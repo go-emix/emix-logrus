@@ -1,0 +1,46 @@
+emix:
+  log: [
+  {
+    level: debug,
+    format: text,
+    outType: console,
+    disabled: true
+  },
+  {
+    level: debug,
+    format: text,
+    outType: file,
+    #    outDir: log/debug,
+    maxAge: 10,
+    maxCount: 10,
+    singleLevel: true,
+    disabled: true
+  },
+  {
+    level: info,
+    format: text,
+    outType: file,
+    #    outDir: log/info,
+    maxAge: 10,
+    maxCount: 10,
+    singleLevel: true
+  },
+  {
+    level: warn,
+    format: text,
+    outType: file,
+    #    outDir: log/warn,
+    #    maxAge: 10,
+    maxCount: 10,
+    singleLevel: true
+  },
+  {
+    level: error,
+    format: text,
+    outType: file,
+    #    outDir: log/error,
+    #    maxAge: 10,
+    maxCount: 10,
+    singleLevel: true
+  },
+  ]
