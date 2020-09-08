@@ -116,6 +116,7 @@ func parseYaml(f string) []LogConfig {
 	utils.PanicError(e)
 	yc := RootConfig{}
 	e = yaml.Unmarshal(bytes, &yc)
+	utils.PanicError(e)
 	return yc.Emix.Log
 }
 
