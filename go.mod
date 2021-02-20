@@ -1,10 +1,10 @@
 module github.com/go-emix/emix-logrus
 
-go 1.14
+go 1.16
 
 require (
 	github.com/fastly/go-utils v0.0.0-20180712184237-d95a45783239 // indirect
-	github.com/go-emix/utils v0.0.0-20200827064310-0aa343e5567f
+	github.com/go-emix/utils v0.0.0-20210220031538-a093a9b167d9
 	github.com/jehiah/go-strftime v0.0.0-20171201141054-1d33003b3869 // indirect
 	github.com/jonboulle/clockwork v0.2.0 // indirect
 	github.com/lestrrat-go/file-rotatelogs v2.3.0+incompatible
