@@ -6,7 +6,6 @@ import (
 	"github.com/sirupsen/logrus"
 	"gopkg.in/yaml.v3"
 	"io"
-	"io/ioutil"
 	"os"
 	"strings"
 	"time"
@@ -112,7 +111,7 @@ func AfterInit(yamlFile string, cs ...LogConfig) (oper Operation) {
 }
 
 func parseYaml(f string) []LogConfig {
-	bytes, e := ioutil.ReadFile(f)
+	bytes, e := os.ReadFile(f)
 	utils.PanicError(e)
 	yc := RootConfig{}
 	e = yaml.Unmarshal(bytes, &yc)
