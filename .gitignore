@@ -3,3 +3,5 @@
 test
 *.exe
 go.sum
+log
+*_test.go

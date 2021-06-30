@@ -190,7 +190,7 @@ func (l *LogEntry) DebugfWith(fields map[string]interface{}, format string, args
 	if logrus.DebugLevel > GlobalLevel.Logrus() {
 		return
 	}
-	for _, v := range l.withs(fields) {
+	for _, v := range l.withs(logrus.DebugLevel, fields) {
 		v.Debugf(format, args...)
 	}
 }
@@ -199,7 +199,7 @@ func (l *LogEntry) InfofWith(fields map[string]interface{}, format string, args 
 	if logrus.InfoLevel > GlobalLevel.Logrus() {
 		return
 	}
-	for _, v := range l.withs(fields) {
+	for _, v := range l.withs(logrus.InfoLevel, fields) {
 		v.Infof(format, args...)
 	}
 }
@@ -208,7 +208,7 @@ func (l *LogEntry) WarnfWith(fields map[string]interface{}, format string, args 
 	if logrus.WarnLevel > GlobalLevel.Logrus() {
 		return
 	}
-	for _, v := range l.withs(fields) {
+	for _, v := range l.withs(logrus.WarnLevel, fields) {
 		v.Warnf(format, args...)
 	}
 }
@@ -217,7 +217,7 @@ func (l *LogEntry) ErrorfWith(fields map[string]interface{}, format string, args
 	if logrus.ErrorLevel > GlobalLevel.Logrus() {
 		return
 	}
-	for _, v := range l.withs(fields) {
+	for _, v := range l.withs(logrus.ErrorLevel, fields) {
 		v.Errorf(format, args...)
 	}
 }
@@ -226,7 +226,7 @@ func (l *LogEntry) DebugWith(fields map[string]interface{}, args ...interface{})
 	if logrus.DebugLevel > GlobalLevel.Logrus() {
 		return
 	}
-	for _, v := range l.withs(fields) {
+	for _, v := range l.withs(logrus.DebugLevel, fields) {
 		v.Debugln(args...)
 	}
 }
@@ -235,7 +235,7 @@ func (l *LogEntry) InfoWith(fields map[string]interface{}, args ...interface{}) 
 	if logrus.InfoLevel > GlobalLevel.Logrus() {
 		return
 	}
-	for _, v := range l.withs(fields) {
+	for _, v := range l.withs(logrus.InfoLevel, fields) {
 		v.Infoln(args...)
 	}
 }
@@ -244,7 +244,7 @@ func (l *LogEntry) WarnWith(fields map[string]interface{}, args ...interface{}) 
 	if logrus.WarnLevel > GlobalLevel.Logrus() {
 		return
 	}
-	for _, v := range l.withs(fields) {
+	for _, v := range l.withs(logrus.WarnLevel, fields) {
 		v.Warnln(args...)
 	}
 }
@@ -253,14 +253,17 @@ func (l *LogEntry) ErrorWith(fields map[string]interface{}, args ...interface{})
 	if logrus.ErrorLevel > GlobalLevel.Logrus() {
 		return
 	}
-	for _, v := range l.withs(fields) {
+	for _, v := range l.withs(logrus.ErrorLevel, fields) {
 		v.Errorln(args...)
 	}
 }
 
-func (l *LogEntry) withs(fields map[string]interface{}) []*logrus.Entry {
+func (l *LogEntry) withs(level logrus.Level, fields map[string]interface{}) []*logrus.Entry {
 	entries := make([]*logrus.Entry, 0)
 	for _, v := range l.logs {
+		if v.Op.SingleLevel && v.Op.Level != level {
+			continue
+		}
 		e := v.WithFields(fields)
 		entries = append(entries, e)
 	}
