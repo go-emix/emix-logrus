@@ -45,13 +45,13 @@ func (r LogFormat) Logrus() logrus.Formatter {
 
 const (
 	ConsoleOut LogOutType = "console"
-	FileOut               = "file"
+	FileOut    LogOutType = "file"
 	DebugLog   LogLevel   = "debug"
-	InfoLog               = "info"
-	WarnLog               = "warn"
-	ErrorLog              = "error"
+	InfoLog    LogLevel   = "info"
+	WarnLog    LogLevel   = "warn"
+	ErrorLog   LogLevel   = "error"
 	TextLog    LogFormat  = "text"
-	JsonLog               = "json"
+	JsonLog    LogFormat  = "json"
 )
 
 type EmixConfig struct {
